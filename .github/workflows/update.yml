@@ -25,6 +25,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add update.yml
+          git add deployment.yml
           git commit -m "Update image tag to 24"
           git push
