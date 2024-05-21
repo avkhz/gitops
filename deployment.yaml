@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weatherapp
+  labels:
+    app: weatherapp
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: weatherapp
+  template:
+    metadata:
+      labels:
+        app: weatherapp
+    spec:
+      containers:
+      - image: avkh12345/weatherapp_pipeline:weather_final_pipe-app.latest
+        name: weatherapp
+        ports:
+        - containerPort: 9090
