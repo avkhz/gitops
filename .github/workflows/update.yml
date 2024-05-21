@@ -1,0 +1,30 @@
+name: CD
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install YQ
+        uses: dcarbone/install-yq-action@v1.1.1
+
+      - name: Update Deployment Image Tag
+        run: |
+          yq -i '.spec.template.spec.containers[0].image = "avkh12345/weatherapp_pipeline:weather_final_pipe_app.24"' deployment.yml
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add forecast.yml
+          git commit -m "Update image tag to 24"
+          git push
