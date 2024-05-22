@@ -19,7 +19,7 @@ jobs:
 
       - name: Update Deployment Image Tag
         run: |
-          yq -i '.spec.template.spec.containers[0].image = "avkh12345/weatherapp_pipeline:weather_final_pipe-app.latest"' deployment.yml
+        yq -i '.spec.template.spec.containers[0].image = "avkh12345/weatherapp_pipeline:weather_final_pipe_app.25"' deployment.yml
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
