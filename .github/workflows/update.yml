@@ -19,12 +19,12 @@ jobs:
 
       - name: Update Deployment Image Tag
         run: |
-          yq -i '.spec.template.spec.containers[0].image = "avkh12345/weatherapp_pipeline:weather_final_pipe_app.24"' deployment.yml
+          yq -i '.spec.template.spec.containers[0].image = "avkh12345/weatherapp_pipeline:weather_final_pipe_app.latest"' deployment.yml
 
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add deployment.yml
-          git commit -m "Update image tag to 24"
+          git commit -m "Update image tag to latest"
           git push
